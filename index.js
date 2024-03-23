@@ -4,19 +4,23 @@ unlist.style.visibility = "hidden";
 let mouseCounter = 0;
 function projectShow() {
     mouseCounter++;
-    if(mouseCounter === 2){
+    if (mouseCounter === 2) {
         unlist.classList.remove("animation");
         unlist.style.animation = "back 1s ease forwards";
+        // Add event listener for animation end
+        unlist.addEventListener('animationend', function() {
+            unlist.style.visibility = "hidden";
+        }, {once: true}); // Make sure the event listener only fires once
         mouseCounter = 0;
-        document.querySelector("button").innerText = "Show projects"
-    }
-    else if(mouseCounter === 1){
+        document.querySelector("button").innerText = "Show projects";
+    } else if (mouseCounter === 1) {
         unlist.style.visibility = "visible";
         unlist.classList.add("animation");
         unlist.style.animation = "rightDrop 1s ease forwards";
-        document.querySelector("button").innerText = "Hide projects"
+        document.querySelector("button").innerText = "Hide projects";
     }
 }
+
 let checkBox = document.querySelector("input");
 
 checkBox.addEventListener('change', function () {
